@@ -1,0 +1,34 @@
+# macOS
+.DS_Store
+
+# .NET
+**/bin/
+**/obj/
+*.user
+*.suo
+
+# Frontend
+**/node_modules/
+**/dist/
+npm-debug.log*
+
+# Environment variables and local secrets
+.env
+.env.*
+!.env.example
+appsettings.Local.json
+appsettings.*.local.json
+secrets.json
+
+# Uploaded resumes and local files
+**/uploads/
+**/Uploads/
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+logs/
+
