@@ -136,3 +136,16 @@ The current version uses deterministic skill extraction and keyword matching to 
 Software Developer based in Miami, Florida.
 
 - GitHub: [vini997](https://github.com/vini997)
+## Screenshots
+
+### Dashboard
+
+![Melo Talent AI dashboard](docs/screenshots/dashboard.png)
+
+### Job Compatibility Analysis
+
+![Job compatibility analysis](docs/screenshots/job-analysis.png)
+
+### Application Tracker
+
+![Application tracker](docs/screenshots/applications.png)
