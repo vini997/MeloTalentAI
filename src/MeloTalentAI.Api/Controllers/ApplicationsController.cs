@@ -43,6 +43,50 @@ public class ApplicationsController : ControllerBase
         return Ok(response);
     }
 
+[HttpGet("{id:guid}")]
+public async Task<ActionResult<ApplicationDetailsResponse>> GetById(Guid id)
+{
+    if (!TryGetUserId(out var userId))
+    {
+        return Unauthorized();
+    }
+
+    var application = await _dbContext.JobApplications
+        .AsNoTracking()
+        .Include(item => item.Analysis)
+        .FirstOrDefaultAsync(item =>
+            item.Id == id &&
+            item.UserId == userId);
+
+    if (application is null || application.Analysis is null)
+    {
+        return NotFound(new
+        {
+            message = "Application analysis not found."
+        });
+    }
+
+    var analysis = application.Analysis;
+
+    return Ok(new ApplicationDetailsResponse(
+        application.Id,
+        application.JobTitle,
+        application.CompanyName,
+        application.JobDescription,
+        application.SourceUrl,
+        application.Status.ToString(),
+        application.CreatedAtUtc,
+        application.AppliedAtUtc,
+        analysis.MatchScore,
+        analysis.MatchingSkills,
+        analysis.MissingSkills,
+        analysis.Recommendations,
+        analysis.GeneratedCoverLetter,
+        analysis.InterviewQuestions,
+        analysis.AnalyzedAtUtc
+    ));
+}
+
     [HttpPatch("{id:guid}/status")]
     public async Task<ActionResult<ApplicationResponse>> UpdateStatus(
         Guid id,

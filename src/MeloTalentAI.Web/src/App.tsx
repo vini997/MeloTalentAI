@@ -1,3 +1,4 @@
+import { ApplicationDetailsPage } from "./pages/ApplicationDetailsPage";
 import { ApplicationsPage } from "./pages/ApplicationsPage";
 import { JobAnalysisPage } from "./pages/JobAnalysisPage";
 import { ResumeUploadPage } from "./pages/ResumeUploadPage";
@@ -22,6 +23,14 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
+<Route
+  path="/applications/:id"
+  element={
+    <ProtectedRoute>
+      <ApplicationDetailsPage />
+    </ProtectedRoute>
+  }
+/>
         <Route path="/login" element={<LoginPage />} />
 	<Route path="/register" element={<RegisterPage />} />
         <Route

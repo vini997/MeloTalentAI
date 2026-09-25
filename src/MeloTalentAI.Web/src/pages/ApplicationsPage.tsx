@@ -173,6 +173,14 @@ export function ApplicationsPage() {
                   </div>
                 </div>
 
+<button
+  type="button"
+  className="view-analysis-button"
+  onClick={() => navigate(`/applications/${application.id}`)}
+>
+  View analysis
+</button>
+
                 <label className="status-control">
                   Status
                   <select
